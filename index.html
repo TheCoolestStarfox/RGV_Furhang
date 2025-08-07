@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>🔐 Cosmic ID Generator</title>
+	<title>🔐 RGV ID Generator</title>
 	<style>
 		body {
 			background-color: #0b0b1f;
@@ -28,6 +28,7 @@
 			border: none;
 			border-radius: 6px;
 			cursor: pointer;
+			margin: 10px;
 		}
 		button:hover {
 			background-color: #9f40ff;
@@ -35,18 +36,38 @@
 	</style>
 </head>
 <body>
-	<h1>🌌 Cosmic Game ID Generator</h1>
+	<h1>🌌 RGV Furhang ID Generator</h1>
 	<div id="idDisplay">Click the button to generate an ID</div><br>
 	<button onclick="generateId()">Generate New ID</button>
+	<button onclick="copyId()">📋 Copy to Clipboard</button>
+	<button onclick="downloadId()">📄 Save as .txt</button>
 
 	<script>
+		let currentId = "";
+
 		function generateId() {
 			const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
 			let id = '';
 			for (let i = 0; i < 30; i++) {
 				id += chars.charAt(Math.floor(Math.random() * chars.length));
 			}
+			currentId = id;
 			document.getElementById('idDisplay').textContent = id;
+		}
+
+		function copyId() {
+			navigator.clipboard.writeText(currentId).then(() => {
+				alert("✅ ID copied to clipboard!");
+			});
+		}
+
+		function downloadId() {
+			if (!currentId) return alert("Generate an ID first!");
+			const blob = new Blob([currentId], { type: "text/plain" });
+			const link = document.createElement("a");
+			link.href = URL.createObjectURL(blob);
+			link.download = "id.txt";
+			link.click();
 		}
 	</script>
 </body>
