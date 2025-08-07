@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>🔐 Cosmic ID Generator</title>
+	<style>
+		body {
+			background-color: #0b0b1f;
+			color: #ffffff;
+			font-family: 'Courier New', monospace;
+			text-align: center;
+			padding-top: 100px;
+		}
+		#idDisplay {
+			font-size: 24px;
+			margin: 20px;
+			padding: 10px;
+			background-color: #1f1f3f;
+			border-radius: 8px;
+			display: inline-block;
+			user-select: all;
+		}
+		button {
+			font-size: 18px;
+			padding: 10px 20px;
+			background-color: #6f00ff;
+			color: white;
+			border: none;
+			border-radius: 6px;
+			cursor: pointer;
+		}
+		button:hover {
+			background-color: #9f40ff;
+		}
+	</style>
+</head>
+<body>
+	<h1>🌌 Cosmic Game ID Generator</h1>
+	<div id="idDisplay">Click the button to generate an ID</div><br>
+	<button onclick="generateId()">Generate New ID</button>
+
+	<script>
+		function generateId() {
+			const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+			let id = '';
+			for (let i = 0; i < 30; i++) {
+				id += chars.charAt(Math.floor(Math.random() * chars.length));
+			}
+			document.getElementById('idDisplay').textContent = id;
+		}
+	</script>
+</body>
+</html>
